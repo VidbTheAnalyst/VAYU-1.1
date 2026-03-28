@@ -29,6 +29,7 @@ export async function POST(request: Request) {
             .from('user_profiles')
             .upsert({
                 id: user_id,
+                full_name: full_name,
                 role: 'admin',
                 admin_type: invitation.admin_type,
                 assigned_city_id: invitation.assigned_city_id,
@@ -46,7 +47,6 @@ export async function POST(request: Request) {
             .from('admin_invitations')
             .update({
                 used_by: user_id,
-                used_at: new Date().toISOString()
             })
             .eq('id', invitation.id);
 

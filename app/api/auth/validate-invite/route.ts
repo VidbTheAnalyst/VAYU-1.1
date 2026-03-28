@@ -4,6 +4,8 @@ import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
     try {
         const { invite_code } = await request.json();
+        
+        console.log('📩 Received invite_code:', invite_code); // ADD THIS
 
         if (!invite_code) {
             return NextResponse.json({ error: 'invite_code_required' }, { status: 400 });
@@ -11,6 +13,9 @@ export async function POST(request: Request) {
 
         const supabase = await createAdminClient();
 
+        console.log('URL:', process.env.NEXT_PUBLIC_SUPABASE_URL);
+        console.log('KEY exists:', !!process.env.SUPABASE_SERVICE_ROLE_KEY);
+        
         const { data: invitation, error } = await supabase
             .from('admin_invitations')
             .select('*')
@@ -18,6 +23,8 @@ export async function POST(request: Request) {
             .is('used_by', null)
             .gt('expires_at', new Date().toISOString())
             .single();
+
+        console.log('🔍 Query result:', { invitation, error }); // ADD THIS
 
         if (error || !invitation) {
             return NextResponse.json({ error: 'invalid_invite' }, { status: 404 });
@@ -29,6 +36,7 @@ export async function POST(request: Request) {
             city_name: invitation.assigned_city_name,
             city_id: invitation.assigned_city_id
         });
+
     } catch (err) {
         console.error('Validate invite error:', err);
         return NextResponse.json({ error: 'internal_error' }, { status: 500 });
