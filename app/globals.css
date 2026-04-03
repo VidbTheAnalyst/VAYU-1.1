@@ -1,0 +1,68 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Syne:wght@400;600&family=JetBrains+Mono:wght@400&display=swap');
+
+body {
+  background: #01020a;
+  color: white;
+  font-family: 'Syne', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Nebula */
+.nebula {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.2;
+  z-index: 1;
+}
+
+.nebula-a {
+  width: 600px;
+  height: 600px;
+  background: #4df4ff;
+  top: -200px;
+  left: -200px;
+}
+
+.nebula-b {
+  width: 500px;
+  height: 500px;
+  background: #a855f7;
+  bottom: -150px;
+  right: -150px;
+}
+
+/* Cursor */
+#cursor {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: #4df4ff;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+}
+
+#cursor-ring {
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(77,244,255,0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+}
+
+/* Button */
+.vayu-btn {
+  background: #4df4ff;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.vayu-btn:hover {
+  box-shadow: 0 0 20px #4df4ff;
+}
